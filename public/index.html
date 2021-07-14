@@ -47,6 +47,9 @@
 
                 try {
                   for (sticker of selectedStickers) {
+                    if (sticker.type !== 'STICKER') continue;
+                    if (!sticker.tags) continue;
+
                     const tag = sticker.tags.find((t) => t.title.startsWith('予定：'));
                     if (tag) {
                       console.log(tag.title);
