@@ -4,13 +4,15 @@
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script>
       miro.onReady(() => {
+        const icon24 = 'https://yskst96.github.io/miro-calculate-hours-plugin/public/calc.svg';
+
         miro.initialize({
           extensionPoints: {
-            bottomBar: {
-              title: 'Some title',
-              svgIcon: '<circle cx="12" cy="12" r="9" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>',
+            toolBar: {
+              title: 'Demo app button',
+              svgIcon: icon24,
               onClick: () => {
-                alert('Hello!');
+                alert('Bottom bar item has been clicked');
               },
             },
           },
