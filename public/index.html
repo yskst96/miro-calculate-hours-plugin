@@ -14,7 +14,11 @@
 
                 console.log(selectedStickers);
 
-                const plannedSTicker = { type: 'sticker', text: '' };
+                const viewport = await miro.board.viewport.get();
+                const centeredX = viewport.x + viewport.width / 2;
+                const centeredY = viewport.y + viewport.height / 2;
+
+                const plannedSTicker = { type: 'sticker', text: '', scale: 1.5, x: centeredX, y: centeredY };
                 let plannedTotal = 0;
 
                 try {
