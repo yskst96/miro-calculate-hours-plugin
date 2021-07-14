@@ -8,11 +8,13 @@
 
         miro.initialize({
           extensionPoints: {
-            toolBar: {
+            toolbar: {
               title: 'Demo app button',
               svgIcon: icon24,
               onClick: () => {
                 alert('Bottom bar item has been clicked');
+                let allStickers = await miro.board.widgets.get({type: 'sticker'})
+                console.log(allStickers)
               },
             },
           },
