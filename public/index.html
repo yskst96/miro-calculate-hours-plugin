@@ -35,7 +35,7 @@
               onClick: async () => {
                 let selectedStickers = await miro.board.selection.get({ type: 'sticker' });
 
-                console.log(selectedStickers);
+                if (selectedStickers.length === 0) return;
 
                 const viewport = await miro.board.viewport.get();
                 const centeredX = viewport.x + viewport.width / 2;
