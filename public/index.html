@@ -14,16 +14,17 @@
 
                 console.log(selectedStickers);
 
-                const target = [];
+                const plannedTotal = 0;
 
                 for (sticker of selectedStickers) {
-                  const tag = sticker.tags.find((t) => t.title.startsWith('予定:'));
+                  const tag = sticker.tags.find((t) => t.title.startsWith('予定：'));
                   if (tag) {
-                    target.push(tag);
+                    console.log(tag.title);
+                    plannedTotal += parseFloat(tag.title.replace('予定：', '').replace('h', ''));
                   }
                 }
 
-                console.log('calc:', target);
+                console.log('calc:', plannedTotal);
               },
             },
           },
