@@ -4,19 +4,26 @@
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script>
       miro.onReady(() => {
-        const icon24 = '<circle cx="12" cy="12" r="9" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>';
-
         miro.initialize({
           extensionPoints: {
             bottomBar: {
               title: 'The button title',
               svgIcon: '<circle cx="12" cy="12" r="9" fill="blue" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>',
               onClick: async () => {
-                miro.showNotification('You clicked a toolbar item!');
-                // let allStickers = await miro.board.widgets.get({ type: 'sticker' });
                 let selectedStickers = await miro.board.selection.get({ type: 'sticker' });
 
                 console.log(selectedStickers);
+
+                const target = [];
+
+                for (sticker of selectedStickers) {
+                  const tag = sticker.tags.find((t) => t.title.startsWith('予定:'));
+                  if (tag) {
+                    target.push(tag);
+                  }
+                }
+
+                console.log('calc:', target);
               },
             },
           },
