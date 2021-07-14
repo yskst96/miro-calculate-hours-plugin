@@ -14,17 +14,24 @@
 
                 console.log(selectedStickers);
 
+                const plannedSTicker = { type: 'sticker', text: '' };
                 let plannedTotal = 0;
 
-                for (sticker of selectedStickers) {
-                  const tag = sticker.tags.find((t) => t.title.startsWith('予定：'));
-                  if (tag) {
-                    console.log(tag.title);
-                    plannedTotal += parseFloat(tag.title.replace('予定：', '').replace('h', ''));
+                try {
+                  for (sticker of selectedStickers) {
+                    const tag = sticker.tags.find((t) => t.title.startsWith('予定：'));
+                    if (tag) {
+                      console.log(tag.title);
+                      plannedTotal += parseFloat(tag.title.replace('予定：', '').replace('h', ''));
+                    }
                   }
+
+                  plannedSTicker.text = `予定時間：${plannedTotal}h`;
+                } catch (e) {
+                  plannedSTicker.text = `予定時間：Error`;
                 }
 
-                console.log('calc:', plannedTotal);
+                miro.board.widgets.create(plannedSTicker);
               },
             },
           },
